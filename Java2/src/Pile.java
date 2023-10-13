@@ -25,7 +25,7 @@ public class Pile {
 	
 	public void push(int element) {
 		if (isFull()) {
-			System.out.println("La pile est pleine")
+			System.out.println("La pile est pleine");
 		}
 		pile[top+1]= element;
 		top ++;
@@ -43,6 +43,9 @@ public class Pile {
 	}
 	public void clear() {
 	}
+	
+	
+	
 	}
 
-}
+
