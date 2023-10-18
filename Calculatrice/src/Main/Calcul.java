@@ -17,7 +17,8 @@ public class Calcul
 	{
 		if (!calculatrice.isEmpty()) 
 		{
-			calculatrice.pop();
+			double e = calculatrice.pop();
+			System.out.println(e);
 		}
 		else 
 		{
@@ -87,11 +88,27 @@ public class Calcul
 	
 	public void opposite() 
 	{
-		
+		if (!calculatrice.isEmpty()) {
+			double nb = calculatrice.pop();
+			double resultat = nb*(-1);
+			push(resultat);
+		}
+		else { 
+			System.out.println("La pile est vide");
+		}
 	}
+		
 	
 	public void drop() 
 	{
+		if (!calculatrice.isEmpty()) 
+		{
+			calculatrice.pop();
+		}
+		else 
+		{
+			System.out.println("La pile est vide");
+		}
 		
 	}
 	
@@ -114,5 +131,14 @@ public class Calcul
 	{
 		calculatrice.clear();
 	}
+	
+	@Override
+    public String toString(){
+        if (calculatrice != null) {
+            return calculatrice.toString();
+        }
+        return "";
+    }
+	
 
 }
