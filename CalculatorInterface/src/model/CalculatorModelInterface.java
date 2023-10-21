@@ -1,6 +1,7 @@
 package model;
 
 public interface CalculatorModelInterface {
+	public void pushAccu(String number);
 	public void add();
 	public void substract();
 	public void multiply();

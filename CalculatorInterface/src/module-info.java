@@ -1,5 +1,9 @@
 module CalculatorInterface {
+	exports view;
+	exports controler;
+	exports model;
+
+	requires javafx.base;
 	requires javafx.controls;
-	
-	opens view to javafx.graphics, javafx.fxml;
+	requires javafx.graphics;
 }

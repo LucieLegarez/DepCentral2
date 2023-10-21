@@ -5,11 +5,22 @@ import java.util.Stack;
 public class JavaStack {
 
 	public static void main(String[] args) {
-		CalculatorModel c = new CalculatorModel();
-		c.push(13);
-		c.push(3);
-		c.opposite();
-		System.out.println(c);
+		Stack<Double> calculatrice = new Stack<>();
+        Stack<String> accu = new Stack<>();
+        CalculatorModel c = new CalculatorModel(calculatrice, accu);
+        		
+		c.pushAccu("1");
+		c.pushAccu("3");
+		c.pushAccu(".");
+		c.pushAccu("2");
+		c.push();
+		c.pushAccu("4");
+		c.push();
+		c.pushAccu("5");
+		c.push();
+		c.multiply();
+		
+		System.out.println("Pile = " + c);
 
 	}
 

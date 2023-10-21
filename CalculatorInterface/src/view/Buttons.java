@@ -16,12 +16,21 @@ public class Buttons{
 	
 	static TextField resultat;
 	
+	/**
+	 * 
+	 * @param label
+	 * @return
+	 */
 	public static Button makeButton(String label) {
 	    Button button = new Button(label);
 	    button.setMinSize(90, 40);
 	    return button;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	 public static GridPane createButtonGrid() {
 		 
 		    Buttons.resultat = resultat; 
@@ -42,7 +51,7 @@ public class Buttons{
 		            "7", "8", "9", "+",
 		            "4", "5", "6", "-",
 		            "1", "2", "3", "*",
-		            "0", ",", "push", "/"
+		            "0", ".", "push", "/"
 		        };
 			
 			int ligne = 5;
