@@ -26,13 +26,17 @@ public class Buttons{
 	
 	CalculatorModel calculatorModel = new CalculatorModel(calculatrice, accu);
 
+	
+
 	public Buttons(TextField resultat, TextField resultat1, TextField resultat2, TextField resultat3,
-			CalculatorModel calculatorModel) {
+			Stack<Double> calculatrice, Stack<String> accu, CalculatorModel calculatorModel) {
 		super();
 		this.resultat = resultat;
 		this.resultat1 = resultat1;
 		this.resultat2 = resultat2;
 		this.resultat3 = resultat3;
+		this.calculatrice = calculatrice;
+		this.accu = accu;
 		this.calculatorModel = calculatorModel;
 	}
 
@@ -63,22 +67,22 @@ public class Buttons{
 		    resultat.setStyle("-fx-alignment: CENTER-RIGHT;");
 		    resultat.setPrefColumnCount(4);
 		    resultat.setEditable(false); 
-		    grid.add(resultat, 0, 0, 4, 1);
+		    grid.add(resultat, 0, 3, 4, 1);
 		    
 		    resultat1.setStyle("-fx-alignment: CENTER-RIGHT;");
 		    resultat1.setPrefColumnCount(4);
 		    resultat1.setEditable(false); 
-		    grid.add(resultat1, 0, 1, 4, 1);
+		    grid.add(resultat1, 0, 2, 4, 1);
 		    
 		    resultat2.setStyle("-fx-alignment: CENTER-RIGHT;");
 		    resultat2.setPrefColumnCount(4);
 		    resultat2.setEditable(false); 
-		    grid.add(resultat2, 0, 2, 4, 1);
+		    grid.add(resultat2, 0, 1, 4, 1);
 		    
 		    resultat3.setStyle("-fx-alignment: CENTER-RIGHT;");
 		    resultat3.setPrefColumnCount(4);
 		    resultat3.setEditable(false); 
-		    grid.add(resultat3, 0, 3, 4, 1);
+		    grid.add(resultat3, 0, 0, 4, 1);
 	
 			String[] buttonLabels = {
 					"opposite", "swap", "drop", "clear",
@@ -111,7 +115,41 @@ public class Buttons{
 			calculatorModel.pushAccu(label);
 
 		} else if (label.equals("push")){
-			resultat.appendText(calculatorModel.getAccu().peek());
+			if (!calculatorModel.getAccu().isEmpty()) {
+	            String accuval = String.join("", calculatorModel.getAccu());
+	            if (!resultat.getText().isEmpty() &resultat1.getText().isEmpty()) {
+	            	resultat1.appendText(accuval);
+	            } else if (!resultat.getText().isEmpty() && !resultat1.getText().isEmpty() && resultat2.getText().isEmpty()) {
+	            	resultat2.appendText(accuval);
+	            } else if (!resultat2.getText().isEmpty() & !resultat1.getText().isEmpty() & !resultat.getText().isEmpty() & resultat3.getText().isEmpty()) {
+	            	resultat3.appendText(accuval);
+	            } else { 
+	            	resultat.appendText(accuval);
+	        }
+			calculatorModel.push();
+		}} else if (label.equals(".")){
+			calculatorModel.pushAccu(label);
+		} else if (label.equals("opposite")){
+			 calculatorModel.opposite();
+		     	double oppositeval = calculatorModel.getCalculatrice().peek();
+		        if (!resultat3.getText().isEmpty()) {
+		        	resultat3.clear();
+		            resultat3.setText(Double.toString(oppositeval));
+		        } else if (!resultat2.getText().isEmpty()) {
+		            resultat2.clear();
+		            resultat2.setText(Double.toString(oppositeval));
+		        } else if (!resultat1.getText().isEmpty()) {
+		             resultat1.clear();
+		             resultat1.setText(Double.toString(oppositeval));
+		        } else if (!resultat.getText().isEmpty()) {
+		             resultat.clear();
+		             resultat.setText(Double.toString(oppositeval));
+		        }
+//			calculatorModel.opposite();
+//			resultat.clear();
+//	        resultat.appendText(calculatorModel.getCalculatrice().peek().toString());
+//		} else if (label.equals("+")) {
+			
 		}
 	}
 }

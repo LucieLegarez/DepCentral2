@@ -33,7 +33,7 @@ public class JavaFx extends Application {
 			Stack<String> accu = new Stack<>();
 			
 			CalculatorModel calculatorModel = new CalculatorModel(calculatrice, accu);
-			Buttons buttons = new Buttons(new TextField(), new TextField(), new TextField(), new TextField(), calculatorModel); 
+			Buttons buttons = new Buttons(new TextField(), new TextField(), new TextField(), new TextField(), calculatrice, accu, calculatorModel); 
 			GridPane buttonGrid = buttons.createButtonGrid();
 			root.setBottom(buttonGrid);
 		        
