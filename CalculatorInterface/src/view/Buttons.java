@@ -134,22 +134,143 @@ public class Buttons{
 		     	double oppositeval = calculatorModel.getCalculatrice().peek();
 		        if (!resultat3.getText().isEmpty()) {
 		        	resultat3.clear();
-		            resultat3.setText(Double.toString(oppositeval));
+		            resultat3.appendText(Double.toString(oppositeval));
 		        } else if (!resultat2.getText().isEmpty()) {
 		            resultat2.clear();
-		            resultat2.setText(Double.toString(oppositeval));
+		            resultat2.appendText(Double.toString(oppositeval));
 		        } else if (!resultat1.getText().isEmpty()) {
 		             resultat1.clear();
-		             resultat1.setText(Double.toString(oppositeval));
+		             resultat1.appendText(Double.toString(oppositeval));
 		        } else if (!resultat.getText().isEmpty()) {
 		             resultat.clear();
-		             resultat.setText(Double.toString(oppositeval));
+		             resultat.appendText(Double.toString(oppositeval));
 		        }
-//			calculatorModel.opposite();
-//			resultat.clear();
-//	        resultat.appendText(calculatorModel.getCalculatrice().peek().toString());
+		} else if (label.equals("drop")) {
+			calculatorModel.drop(); 
+	        if (!resultat3.getText().isEmpty()) {
+	        	resultat3.clear();
+	        } else if (!resultat2.getText().isEmpty()) {
+	            resultat2.clear();
+	        } else if (!resultat1.getText().isEmpty()) {
+	             resultat1.clear();
+	        } else if (!resultat.getText().isEmpty()) {
+	             resultat.clear();
+	        }
+		} else if (label.equals("clear")) {
+			calculatorModel.clear();
+			resultat.clear();
+			resultat1.clear();
+			resultat2.clear();
+			resultat3.clear();
+		} else if (label.equals("swap")) {
+			calculatorModel.swap();
+			if (!resultat3.getText().isEmpty()) {
+	        	String a = resultat2.getText();
+	        	String b = resultat3.getText();
+	        	resultat3.clear();
+	        	resultat2.clear();
+	        	resultat3.appendText(a);
+	        	resultat2.appendText(b);
+	        } else if (!resultat2.getText().isEmpty()) {
+	        	String a = resultat2.getText();
+	        	String b = resultat1.getText();
+	        	resultat1.clear();
+	        	resultat2.clear();
+	        	resultat1.appendText(a);
+	        	resultat2.appendText(b);
+	        } else {
+	        	String a = resultat.getText();
+	        	String b = resultat1.getText();
+	        	resultat1.clear();
+	        	resultat.clear();
+	        	resultat1.appendText(a);
+	        	resultat.appendText(b);
+	        }
 //		} else if (label.equals("+")) {
-			
-		}
-	}
+//			calculatorModel.add();
+//			double addval = calculatorModel.getCalculatrice().peek();
+//	        if (!resultat3.getText().isEmpty()) {
+//	        	resultat3.clear();
+//	        	resultat2.clear();
+//	        	resultat2.appendText(Double.toString(addval));
+//	        } else if (!resultat2.getText().isEmpty()) {
+//	            resultat2.clear();
+//	            resultat1.clear();
+//	            resultat1.appendText(Double.toString(addval));
+//	        } else {
+//	             resultat1.clear();
+//	             resultat.clear();
+//	             resultat.appendText(Double.toString(addval));
+//	        }
+//		} else if (label.equals("-")) {
+//			calculatorModel.substract();
+//			double subval = calculatorModel.getCalculatrice().peek();
+//	        if (!resultat3.getText().isEmpty()) {
+//	        	resultat3.clear();
+//	        	resultat2.clear();
+//	        	resultat2.appendText(Double.toString(subval));
+//	        } else if (!resultat2.getText().isEmpty()) {
+//	            resultat2.clear();
+//	            resultat1.clear();
+//	            resultat1.appendText(Double.toString(subval));
+//	        } else {
+//	             resultat1.clear();
+//	             resultat.clear();
+//	             resultat.appendText(Double.toString(subval));
+//	        }
+//		} else if (label.equals("*")) {
+//			calculatorModel.multiply();
+//			double mulval = calculatorModel.getCalculatrice().peek();
+//		    if (!resultat3.getText().isEmpty()) {
+//		        resultat3.clear();
+//		        resultat2.clear();
+//		        resultat2.appendText(Double.toString(mulval));
+//		    } else if (!resultat2.getText().isEmpty()) {
+//		        resultat2.clear();
+//		        resultat1.clear();
+//		        resultat1.appendText(Double.toString(mulval));
+//		    } else {
+//		        resultat1.clear();
+//		        resultat.clear();
+//		        resultat.appendText(Double.toString(mulval));
+//		    }
+//		} else if (label.equals("/")) {
+//			calculatorModel.divide();
+//			double divval = calculatorModel.getCalculatrice().peek();
+//		    if (!resultat3.getText().isEmpty()) {
+//		        resultat3.clear();
+//		        resultat2.clear();
+//		        resultat2.appendText(Double.toString(divval));
+//		    } else if (!resultat2.getText().isEmpty()) {
+//		        resultat2.clear();
+//		        resultat1.clear();
+//		        resultat1.appendText(Double.toString(divval));
+//		    } else {
+//		        resultat1.clear();
+//		        resultat.clear();
+//		        resultat.appendText(Double.toString(divval));
+		} else if (label.equals("+") || label.equals("-") || label.equals("*") || label.equals("/")) {
+		    double res = calculatorModel.getCalculatrice().peek();
+		    if (label.equals("+")) {
+		        calculatorModel.add();
+		    } else if (label.equals("-")) {
+		        calculatorModel.substract();
+		    } else if (label.equals("*")) {
+		        calculatorModel.multiply();
+		    } else if (label.equals("/")) {
+		        calculatorModel.divide();
+		    }
+		    if (!resultat3.getText().isEmpty()) {
+		        resultat3.clear();
+		        resultat2.clear();
+		        resultat2.appendText(Double.toString(res));
+		    } else if (!resultat2.getText().isEmpty()) {
+		        resultat2.clear();
+		        resultat1.clear();
+		        resultat1.appendText(Double.toString(res));
+		    } else {
+		        resultat1.clear();
+		        resultat.clear();
+		        resultat.appendText(Double.toString(res));
+		    }}}
 }

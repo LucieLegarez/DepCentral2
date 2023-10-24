@@ -20,7 +20,7 @@ public class JavaStack {
 		c.pushAccu("5");
 		c.push();
 		c.multiply();
-		
+		c.clear();
 		System.out.println("Pile = " + c);
 
 	}

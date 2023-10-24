@@ -53,7 +53,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			double e = calculatrice.pop();
 			System.out.println(e);
 		}else {
-			System.out.println("La pile est vide");
+			System.out.println("La pile est vide.");
 		}
 	}
 	
@@ -98,7 +98,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			double resultat = nb1*nb2;
 			calculatrice.push(resultat);
 		}else {
-			System.out.println("Il n'y a pas assez d'éléments pour faire une multiplication");
+			System.out.println("Il n'y a pas assez d'éléments pour faire une multiplication.");
 		}
 	}
 	
@@ -113,7 +113,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			double resultat = nb2/nb1;
 			calculatrice.push(resultat);
 		}else {
-			System.out.println("Il n'y a pas assez d'éléments pour faire une division");
+			System.out.println("Il n'y a pas assez d'éléments pour faire une division.");
 		}
 	}
 	
@@ -127,7 +127,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			double resultat = nb*(-1);
 			calculatrice.push(resultat);
 		}else { 
-			System.out.println("La pile est vide");
+			System.out.println("La pile est vide.");
 		}
 	}
 		
@@ -139,7 +139,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 		if (!calculatrice.isEmpty()) {
 			calculatrice.pop();
 		}else {
-			System.out.println("La pile est vide");
+			System.out.println("La pile est vide.");
 		}
 	}
 	
@@ -154,7 +154,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			calculatrice.push(nb1);
 			calculatrice.push(nb2);
 		}else {
-			System.out.println("Il n'y a pas assez d'éléments faire l'échange");
+			System.out.println("Il n'y a pas assez d'éléments pour faire l'échange.");
 		}
 	}
 	
