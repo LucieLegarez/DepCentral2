@@ -8,8 +8,8 @@ import java.util.Stack;
  */
 public class CalculatorModel implements CalculatorModelInterface{
 	
-	private Stack<Double> calculatrice; //création d'un attribut pile 
-	private Stack<String> accu; //création d'un attribut accumulateur pour stocker les nombres
+	public Stack<Double> calculatrice; //création d'un attribut pile 
+	public Stack<String> accu; //création d'un attribut accumulateur pour stocker les nombres
 	
 	
 	/**
@@ -173,5 +173,27 @@ public class CalculatorModel implements CalculatorModelInterface{
         }
         return "";
     }
+
+
+	public Stack<Double> getCalculatrice() {
+		return calculatrice;
+	}
+
+
+	public void setCalculatrice(Stack<Double> calculatrice) {
+		this.calculatrice = calculatrice;
+	}
+
+
+	public Stack<String> getAccu() {
+		return accu;
+	}
+
+
+	public void setAccu(Stack<String> accu) {
+		this.accu = accu;
+	}
+	
+	
 
 }

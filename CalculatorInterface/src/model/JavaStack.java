@@ -13,6 +13,7 @@ public class JavaStack {
 		c.pushAccu("3");
 		c.pushAccu(".");
 		c.pushAccu("2");
+		System.out.println("Accu = " + c);
 		c.push();
 		c.pushAccu("4");
 		c.push();

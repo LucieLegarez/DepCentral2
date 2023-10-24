@@ -12,17 +12,36 @@ import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import java.util.Stack;
 
+import model.CalculatorModel;
+
 public class Buttons{
 	
-	static TextField resultat = new TextField();
-
+	public TextField resultat = new TextField();
+	public TextField resultat1 = new TextField();
+	public TextField resultat2 = new TextField();
+	public TextField resultat3 = new TextField();
 	
+	Stack<Double> calculatrice = new Stack<>();
+	Stack<String> accu = new Stack<>();
+	
+	CalculatorModel calculatorModel = new CalculatorModel(calculatrice, accu);
+
+	public Buttons(TextField resultat, TextField resultat1, TextField resultat2, TextField resultat3,
+			CalculatorModel calculatorModel) {
+		super();
+		this.resultat = resultat;
+		this.resultat1 = resultat1;
+		this.resultat2 = resultat2;
+		this.resultat3 = resultat3;
+		this.calculatorModel = calculatorModel;
+	}
+
 	/**
 	 * 
 	 * @param label
 	 * @return
 	 */
-	public static Button makeButton(String label) {
+	public Button makeButton(String label) {
 	    Button button = new Button(label);
 	    button.setMinSize(90, 40);
         button.setOnAction(event -> handleButtonClick(label));
@@ -33,7 +52,7 @@ public class Buttons{
 	 * 
 	 * @return
 	 */
-	 public static GridPane createButtonGrid() {
+	 public GridPane createButtonGrid() {
 		  
 	        GridPane grid = new GridPane();
 	        grid.setPadding(new Insets(10));
@@ -45,6 +64,21 @@ public class Buttons{
 		    resultat.setPrefColumnCount(4);
 		    resultat.setEditable(false); 
 		    grid.add(resultat, 0, 0, 4, 1);
+		    
+		    resultat1.setStyle("-fx-alignment: CENTER-RIGHT;");
+		    resultat1.setPrefColumnCount(4);
+		    resultat1.setEditable(false); 
+		    grid.add(resultat1, 0, 1, 4, 1);
+		    
+		    resultat2.setStyle("-fx-alignment: CENTER-RIGHT;");
+		    resultat2.setPrefColumnCount(4);
+		    resultat2.setEditable(false); 
+		    grid.add(resultat2, 0, 2, 4, 1);
+		    
+		    resultat3.setStyle("-fx-alignment: CENTER-RIGHT;");
+		    resultat3.setPrefColumnCount(4);
+		    resultat3.setEditable(false); 
+		    grid.add(resultat3, 0, 3, 4, 1);
 	
 			String[] buttonLabels = {
 					"opposite", "swap", "drop", "clear",
@@ -71,51 +105,13 @@ public class Buttons{
 	 
 	 
 		
-	public static void handleButtonClick(String label) {
+	public void handleButtonClick(String label) {
 		
-		if (label.equals("1")) {
-			resultat.setText("1");
-		} else {
-			resultat.appendText(label);
+		if (label.matches("[0-9]")) {
+			calculatorModel.pushAccu(label);
+
+		} else if (label.equals("push")){
+			resultat.appendText(calculatorModel.getAccu().peek());
 		}
-////	    if (label.equals("push")) {
-////	        // Si l'utilisateur appuie sur "push", ajoutez le nombre saisi à la pile
-////	        try {
-////	            double num = Double.parseDouble(Buttons.resultat.getText()); // Utilisez la variable statique de Buttons
-////	            stack.push(num); 
-////	            Buttons.resultat.clear(); 
-//	        } catch (NumberFormatException e) {
-//	            Buttons.resultat.setText("Erreur"); 
-//	        }
-//	    } else if (label.equals("+") || label.equals("-") || label.equals("*") || label.equals("/")) {
-//	     
-//	        if (stack.size() >= 2) {
-//	            double num2 = stack.pop();
-//	            double num1 = stack.pop();
-//	            double result = 0.0;
-//	            if (label.equals("+")) {
-//	                result = num1 + num2;
-//	            } else if (label.equals("-")) {
-//	                result = num1 - num2;
-//	            } else if (label.equals("*")) {
-//	                result = num1 * num2;
-//	            } else if (label.equals("/")) {
-//	                if (num2 != 0) {
-//	                    result = num1 / num2;
-//	                } else {
-//	                    Buttons.resultat.setText("Erreur"); // Utilisez la variable statique de Buttons
-//	                    return;
-//	                }
-//	            }
-//	            stack.push(result); // Utilisez la variable statique de Buttons
-//	            Buttons.resultat.clear(); // Utilisez la variable statique de Buttons
-//	            Buttons.resultat.setText(Double.toString(result)); // Utilisez la variable statique de Buttons
-//	        } else {
-//	            Buttons.resultat.setText("Erreur"); // Utilisez la variable statique de Buttons
-//	        }
-//	    } else {
-//	        // Si l'utilisateur appuie sur un chiffre ou un point, ajoutez-le au champ de texte
-//	        Buttons.resultat.appendText(label); // Utilisez la variable statique de Buttons
-//	    }
 	}
 }

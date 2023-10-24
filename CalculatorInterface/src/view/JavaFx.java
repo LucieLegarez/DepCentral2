@@ -1,9 +1,14 @@
 package view;
 	
+import java.util.Stack;
+
 import javafx.application.Application;
+
+import model.CalculatorModel;
 
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+import model.CalculatorModel;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,7 +28,13 @@ public class JavaFx extends Application {
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			GridPane buttonGrid = Buttons.createButtonGrid();
+			
+			Stack<Double> calculatrice = new Stack<>();
+			Stack<String> accu = new Stack<>();
+			
+			CalculatorModel calculatorModel = new CalculatorModel(calculatrice, accu);
+			Buttons buttons = new Buttons(new TextField(), new TextField(), new TextField(), new TextField(), calculatorModel); 
+			GridPane buttonGrid = buttons.createButtonGrid();
 			root.setBottom(buttonGrid);
 		        
 			primaryStage.setScene(scene);
