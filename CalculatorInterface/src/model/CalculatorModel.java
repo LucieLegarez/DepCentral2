@@ -8,27 +8,36 @@ import java.util.Stack;
  */
 public class CalculatorModel implements CalculatorModelInterface{
 	
-	public Stack<Double> calculatrice; //création d'un attribut pile 
-	public Stack<String> accu; //création d'un attribut accumulateur pour stocker les nombres
+	private Stack<Double> calculatrice; //création d'un attribut pile 
+	private Stack<String> accu; //création d'un attribut accumulateur pour stocker les nombres
+	private boolean hasPoint = false; //création d'un attribut pour écarter le cas de la double virgule
 	
 	
 	/**
-	 * Génère le constructeur
+	 * Constructeur de la classe CalculatorModel qui initialise les attributs
 	 * @param calculatrice
 	 * @param accu
 	 */
-	public CalculatorModel(Stack<Double> calculatrice, Stack<String> accu) {
-		this.calculatrice = calculatrice;
-		this.accu = accu;
+	public CalculatorModel() {
+		this.calculatrice = new Stack<Double>();
+		this.accu = new Stack<String>();
 	}
-	
-	
+
+
 	/**
 	 * Rajoute le nombre sur l'accumulateur
 	 * @param number
 	 */
 	public void pushAccu(String number) {
-		accu.push(number);
+		if (hasPoint && number ==".") {
+			System.out.println("Le nombre ne peut pas posséder plus d'une virgule.");
+			// On ne rajoute pas la virgule et on continue à rajouter les chiffres à la suite
+		} else {
+			accu.push(number);
+			if (accu.contains(".")) {
+				hasPoint = true;
+			}
+		}
 	}
 	
 	
@@ -42,6 +51,7 @@ public class CalculatorModel implements CalculatorModelInterface{
 			concat = accu.pop() + concat;
 		}
 		calculatrice.push(Double.parseDouble(concat));
+		hasPoint = false;
 	}
 	
 	
@@ -107,12 +117,15 @@ public class CalculatorModel implements CalculatorModelInterface{
 	 * Méthode qui permet de diviser entre eux les deux derniers éléments de la pile
 	 */
 	public void divide() {
-		if (calculatrice.size()>=2) {
+		if (calculatrice.size()>=2 && calculatrice.get(calculatrice.size()-1)!=0) {
 			double nb1 = calculatrice.pop(); //on récupère les 2 derniers éléments de la pile
 			double nb2 = calculatrice.pop();
 			double resultat = nb2/nb1;
 			calculatrice.push(resultat);
-		}else {
+		} else if (calculatrice.size()>=2 && calculatrice.get(calculatrice.size()-1)==0) {
+			System.out.println("Erreur : division par 0.");
+			calculatrice.pop(); //enlève le 0 de la pile
+		} else {
 			System.out.println("Il n'y a pas assez d'éléments pour faire une division.");
 		}
 	}
@@ -166,6 +179,19 @@ public class CalculatorModel implements CalculatorModelInterface{
 	}
 	
 	
+	public void performOperation(String operator) {
+        if (operator.equals("+")) {
+            add();
+        } else if (operator.equals("-")) {
+            substract();
+        } else if (operator.equals("*")) {
+            multiply();
+        } else if (operator.equals("/")) {
+            divide();
+        }
+    }
+	
+	
 	@Override
     public String toString(){
         if (calculatrice != null) {
@@ -174,26 +200,40 @@ public class CalculatorModel implements CalculatorModelInterface{
         return "";
     }
 
-
+	
+	/**
+	 * Getter pour la pile correspondant à la calculatrice
+	 * @return calculatrice
+	 */
 	public Stack<Double> getCalculatrice() {
 		return calculatrice;
 	}
 
-
+	
+	/**
+	 * Setter pour la pile correspondant à la calculatrice
+	 * @param calculatrice
+	 */
 	public void setCalculatrice(Stack<Double> calculatrice) {
 		this.calculatrice = calculatrice;
 	}
 
-
+	
+	/**
+	 * Getter pour la pile correspondant à l'accumulateur
+	 * @return accumulateur
+	 */
 	public Stack<String> getAccu() {
 		return accu;
 	}
 
-
+	
+	/**
+	 * Setter pour la pile correspondant à l'accumulateur
+	 * @param accumulateur
+	 */
 	public void setAccu(Stack<String> accu) {
 		this.accu = accu;
 	}
 	
-	
-
 }

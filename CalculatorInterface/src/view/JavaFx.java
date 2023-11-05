@@ -1,21 +1,17 @@
 package view;
-	
+
 import java.util.Stack;
 
+import controler.CalculatorControler;
 import javafx.application.Application;
 
-import model.CalculatorModel;
-
-import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import model.CalculatorModel;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 
 public class JavaFx extends Application {
 	
@@ -28,13 +24,13 @@ public class JavaFx extends Application {
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
+			CalculatorGUI calculatorGUI = new CalculatorGUI();
+			CalculatorControler calculatorControler = new CalculatorControler(calculatorGUI);
+			calculatorGUI.setControler(calculatorControler);
+            GridPane buttonGrid = calculatorControler.getButtonGrid();
+//			calculatorGUI.setControler(calculatorControler);
 			
-			Stack<Double> calculatrice = new Stack<>();
-			Stack<String> accu = new Stack<>();
-			
-			CalculatorModel calculatorModel = new CalculatorModel(calculatrice, accu);
-			Buttons buttons = new Buttons(new TextField(), new TextField(), new TextField(), new TextField(), calculatrice, accu, calculatorModel); 
-			GridPane buttonGrid = buttons.createButtonGrid();
+//			GridPane buttonGrid = buttons.createButtonGrid();
 			root.setBottom(buttonGrid);
 		        
 			primaryStage.setScene(scene);
@@ -46,6 +42,10 @@ public class JavaFx extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+	    try {
+	        launch(args);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }
